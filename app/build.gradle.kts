@@ -29,6 +29,10 @@ android {
             )
         }
     }
+    //Para Gerar automaticamente as Views
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,11 +40,19 @@ android {
 }
 
 dependencies {
+    //Ui Libraries
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+    //Navigation Libraries
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
+    //Test Libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }
