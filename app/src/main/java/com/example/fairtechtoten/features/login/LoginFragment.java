@@ -25,14 +25,6 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Button btnLogin = view.findViewById(R.id.btnLogin);
 
-        btnLogin.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(view);
-
-            navController.navigate(
-                    R.id.action_login_to_home
-            );
-        });
     }
 }
