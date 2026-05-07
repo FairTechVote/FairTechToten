@@ -14,7 +14,54 @@
         android:layout_marginTop="105dp"
         android:layout_marginEnd="92dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/slashless_logo" />
+
+    <EditText
+        android:id="@+id/email_tb"
+        android:layout_width="wrap_content"
+        android:layout_height="48sp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="22dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="text|textNoSuggestions"
+        app:layout_constraintBottom_toTopOf="@+id/password_tb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/password_tb"
+        android:layout_width="wrap_content"
+        android:layout_height="48sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="225dp"
+        android:ems="10"
+        android:hint="senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_tb" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="221dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="113dp"
+        android:text="LogIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_tb" />
 </androidx.constraintlayout.widget.ConstraintLayout>
