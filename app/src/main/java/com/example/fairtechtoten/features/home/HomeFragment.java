@@ -10,13 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fairtechtoten.R;
 import com.example.fairtechtoten.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private String email;
+    private String name;
 
     @Nullable
     @Override
@@ -32,10 +31,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
-            email = getArguments().getString("email", "Usuário");
+            name = getArguments().getString("name", "User");
         }
 
-        binding.welcomeTxt.setText("Bem-vindo, " + email + "!");
+        binding.welcomeTxt.setText("Bem-vindo, " + name + "!");
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,10 +15,12 @@ import android.widget.Toast;
 
 import com.example.fairtechtoten.R;
 import com.example.fairtechtoten.databinding.FragmentLoginBinding;
+import com.example.fairtechtoten.domain.model.Coordinator;
 
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
+    private LoginViewModel viewModel;
 
     @Nullable
     @Override
@@ -25,6 +28,7 @@ public class LoginFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         return binding.getRoot();
     }
 
@@ -33,8 +37,37 @@ public class LoginFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        setupObservers();
         setupListener();
 
+
+    }
+
+    public void setupObservers() {
+
+        viewModel.getLoginResult().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.getStatus()) {
+                case LOADING:
+                    binding.loginBtn.setEnabled(false);
+                    binding.loginBtn.setText("Carregando ...");
+                    break;
+                case SUCCESS:
+                    binding.loginBtn.setEnabled(true);
+                    binding.loginBtn.setText("Login");
+
+                    Coordinator coordinator = resource.getData();
+                    navigateToHome(coordinator);
+
+                    break;
+                case ERROR:
+                    binding.loginBtn.setEnabled(true);
+                    binding.loginBtn.setText("Login");
+                    Toast.makeText(requireContext(),
+                            resource.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        });
 
     }
 
@@ -43,24 +76,30 @@ public class LoginFragment extends Fragment {
         binding.loginBtn.setOnClickListener(v -> {
             String email = binding.emailTb.getText().toString();
             String password = binding.passwordTb.getText().toString();
-            if(email.equals("admin") && password.equals("admin")) {
 
-                Bundle bundle = new Bundle();
-                bundle.putString("email", email);
-
-                Navigation.findNavController(v)
-                        .navigate(R.id.action_login_to_home, bundle);
-
-            } else {
-
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(),
-                        "Email ou senha incorretos",
+                        "Preencha todos os campos",
                         Toast.LENGTH_SHORT).show();
-
+                return;
             }
+
+            viewModel.login(email, password);
+
         });
 
     }
+
+    private void navigateToHome(Coordinator coordinator) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email", coordinator.getEmail());
+        bundle.putString("name", coordinator.getName());
+        bundle.putString("token", coordinator.getToken());
+        bundle.putLong("coordinatorId", coordinator.getCoordinatorId());
+        Navigation.findNavController(binding.getRoot())
+                .navigate(R.id.action_login_to_home, bundle);
+    }
+
 
     @Override
     public void onDestroyView() {
