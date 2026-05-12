@@ -50,6 +50,10 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
 
+    // RecyclerView + CardView
+    implementation(libs.recyclerview)
+    implementation(libs.cardview)
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)

@@ -1,5 +1,7 @@
 package com.example.fairtechtoten.data.repository;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.example.fairtechtoten.data.remote.ApiService;
@@ -17,8 +19,8 @@ public class AuthRepositoryImpl implements AuthRepository {
 
     private final ApiService apiService;
 
-    public AuthRepositoryImpl() {
-        this.apiService = RetrofitClient.getApiService();
+    public AuthRepositoryImpl(Context context) {
+        this.apiService = RetrofitClient.getApiService(context);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class AuthRepositoryImpl implements AuthRepository {
             @Override
             public void onFailure(@NonNull Call<LoginResponseDto> call,
                                   @NonNull Throwable t) {
-                callback.onError("Erro de conexão");
+                callback.onError("Erro de conexão: " + t.getMessage());
 
             }
         });

@@ -1,21 +1,25 @@
 package com.example.fairtechtoten.features.login;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.fairtechtoten.core.utils.Resource;
 import com.example.fairtechtoten.data.repository.AuthRepositoryImpl;
 import com.example.fairtechtoten.domain.model.Coordinator;
 import com.example.fairtechtoten.domain.repository.AuthRepository;
 
-public class LoginViewModel extends ViewModel {
+public class LoginViewModel extends AndroidViewModel {
 
     private final AuthRepository authRepository;
     private final MutableLiveData<Resource<Coordinator>> loginResult = new MutableLiveData<>();
 
-    public LoginViewModel() {
-        this.authRepository = new AuthRepositoryImpl();
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
+        this.authRepository = new AuthRepositoryImpl(application);
     }
 
     public LiveData<Resource<Coordinator>> getLoginResult() {
@@ -31,6 +35,7 @@ public class LoginViewModel extends ViewModel {
             }
             @Override
             public void onError(String message) {
+
                 loginResult.setValue(Resource.error(message));
             }
         });

@@ -21,24 +21,5 @@
         android:name="com.example.fairtechtoten.features.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
-
-        <argument
-            android:name="email"
-            app:argType="string"
-            android:defaultValue="E-mail" />
-        <argument
-            android:name="name"
-            app:argType="string"
-            android:defaultValue="Nome" />
-
-        <argument
-            android:name="token"
-            app:argType="string"
-            android:defaultValue="" />
-
-        <argument
-            android:name="coordinatorId"
-            app:argType="long"
-            android:defaultValue="0L" />
     </fragment>
 </navigation>

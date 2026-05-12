@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fairtechtoten.R;
+import com.example.fairtechtoten.data.local.TokenManager;
 import com.example.fairtechtoten.databinding.FragmentLoginBinding;
 import com.example.fairtechtoten.domain.model.Coordinator;
 
@@ -91,13 +92,15 @@ public class LoginFragment extends Fragment {
     }
 
     private void navigateToHome(Coordinator coordinator) {
-        Bundle bundle = new Bundle();
-        bundle.putString("email", coordinator.getEmail());
-        bundle.putString("name", coordinator.getName());
-        bundle.putString("token", coordinator.getToken());
-        bundle.putLong("coordinatorId", coordinator.getCoordinatorId());
-        Navigation.findNavController(binding.getRoot())
-                .navigate(R.id.action_login_to_home, bundle);
+        TokenManager tokenManager = new TokenManager(requireContext());
+        tokenManager.saveUserData(
+                coordinator.getToken(),
+                coordinator.getCoordinatorId(),
+                coordinator.getEmail(),
+                coordinator.getName()
+        );
+        Navigation.findNavController(requireView())
+                .navigate(R.id.action_login_to_home);
     }
 
 
