@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
 @Entity(tableName = "coordinators")
 public class Coordinator {
 
@@ -17,7 +15,6 @@ public class Coordinator {
     private String email;
     @ColumnInfo(name = "name")
     private String name;
-    private List<Institute> institutes;
 
     public Coordinator(String token, long CoordinatorId, String email, String name) {
 
