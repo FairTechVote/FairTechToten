@@ -42,6 +42,8 @@ public class InstituteRepositoryImpl implements InstituteRepository {
                                         dto.getCnpj()
                                 ));
                             }
+                            LocalDabaseManager.getDatabase(context).saveInstitutes(institutes);
+
                             callback.onSuccess(institutes);
                         } else {
                             callback.onError("Erro ao obter os instituições");

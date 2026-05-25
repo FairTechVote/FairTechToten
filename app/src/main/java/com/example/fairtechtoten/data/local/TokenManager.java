@@ -11,6 +11,8 @@ public class TokenManager {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_NAME = "name";
 
+    private static final String KEY_data_local = "local_user_data";
+
     private final SharedPreferences prefs;
 
     public TokenManager(Context context) {

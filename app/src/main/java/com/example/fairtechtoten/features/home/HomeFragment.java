@@ -1,6 +1,5 @@
 package com.example.fairtechtoten.features.home;
 
-import static com.example.fairtechtoten.core.utils.Resource.Status.*;
 
 import android.os.Bundle;
 
