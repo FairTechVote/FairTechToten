@@ -13,12 +13,14 @@ import java.util.List;
 @Dao
 public interface CoordinatorDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Coordinator coordinator);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Coordinator> coordinators);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void upsert(Coordinator coordinator);
     @Update
     void update(Coordinator coordinator);
 
@@ -27,5 +29,11 @@ public interface CoordinatorDAO {
 
     @Query("SELECT * FROM coordinators WHERE email = :email")
     Coordinator getByEmail(String email);
+
+    @Query("SELECT * FROM coordinators ORDER BY id DESC LIMIT 1")
+    Coordinator getCurrent();
+
+    @Query("DELETE FROM coordinators")
+    void deleteAll();
 
 }

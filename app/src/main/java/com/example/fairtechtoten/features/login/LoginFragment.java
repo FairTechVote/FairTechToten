@@ -95,7 +95,7 @@ public class LoginFragment extends Fragment {
         TokenManager tokenManager = new TokenManager(requireContext());
         tokenManager.saveUserData(
                 coordinator.getToken(),
-                coordinator.getCoordinatorId(),
+                coordinator.getId(),
                 coordinator.getEmail(),
                 coordinator.getName()
         );

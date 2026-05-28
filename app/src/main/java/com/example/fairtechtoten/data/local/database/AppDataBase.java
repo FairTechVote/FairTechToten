@@ -11,7 +11,7 @@ import com.example.fairtechtoten.domain.model.Coordinator;
 
 @Database(entities = {
         Coordinator.class
-},version = 1, exportSchema = false)
+},version = 2, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static AppDataBase instance;
