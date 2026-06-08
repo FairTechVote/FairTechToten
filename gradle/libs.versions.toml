@@ -14,6 +14,9 @@ lifecycleRuntime = "2.6.2"
 recyclerview = "1.3.2"
 cardview = "1.0.0"
 room = "2.6.1"
+playServicesMaps = "19.0.0"
+playServicesLocation = "21.3.0"
+mapsUtils = "3.8.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -33,6 +36,10 @@ recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+maps-utils = { group = "com.google.maps.android", name = "android-maps-utils", version.ref = "mapsUtils" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

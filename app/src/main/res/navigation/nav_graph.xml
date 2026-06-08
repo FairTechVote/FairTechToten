@@ -16,10 +16,30 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <!-- HOME FRAGMENT -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.fairtechtoten.features.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_map"
+            app:destination="@id/mapFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- MAP FRAGMENT -->
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.fairtechtoten.features.map.MapFragment"
+        android:label="Mapa"
+        tools:layout="@layout/fragment_map">
+
+        <action
+            android:id="@+id/action_map_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

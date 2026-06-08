@@ -18,6 +18,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //Chave do maps
+        manifestPlaceholders["MAPS_API_KEY"] = project.findProperty("MAPS_API_KEY") ?: ""
     }
 
     buildTypes {
@@ -67,6 +70,11 @@ dependencies {
     //Room
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
+
+    // Google Maps + GPS
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
+    implementation(libs.maps.utils)
 
     //Test Libraries
     testImplementation(libs.junit)
